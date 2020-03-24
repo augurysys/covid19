@@ -23,6 +23,21 @@ cmap_magnitude = matplotlib.colors.LinearSegmentedColormap('Mask', color_dict)
 
 # functions:
 
+def display_shapes(x):
+    
+    print('x' + ':')
+    for out_key in x.keys():
+        if type(x[out_key])==dict:
+            print('--' + out_key + ':')
+            for in_key in x[out_key].keys():
+                assert type(x[out_key][in_key])==np.ndarray
+                print('  --' + in_key  + ': ' + str(x[out_key][in_key].shape))
+        elif type(x[out_key])==np.ndarray:
+            print('--' + out_key  + ': ' + str(x[out_key].shape))
+            
+    return
+
+
 def display_all(
     x, 
     figsize=figsize, 
@@ -130,6 +145,17 @@ def display_all(
         plt.title('Constant-Q Cepstral Coefficients')
         plt.ylim([0, 50]) ###
         plt.show()
+        
+    # display features:
+    plt.figure(figsize=figsize)
+    idx = ~np.isnan(x['features'])
+    val = np.std(x['features'][idx])
+    plt.imshow(x['features'], aspect='auto', origin='lower', cmap=cmap_spec, vmin=-val, vmax=val)
+    plt.xticks(axes['stft']['t']['idx'], axes['stft']['t']['val'])
+    plt.xlabel('t [sec]')
+    plt.ylabel('features')
+    plt.title('Extracted Features')
+    plt.show()
     
     return
 
@@ -149,11 +175,12 @@ def create_ticks_all(x):
 
     for out_key in x.keys():
         axes[out_key] = {}
-        for in_key in x[out_key].keys():
-            if in_key in ['f', 't']:
-                idx_ticks, val_ticks = create_ticks(
-                    x[out_key][in_key], n_ticks=9, n_decimals=2)
-                axes[out_key][in_key] = {
-                    'idx': idx_ticks,
-                    'val': val_ticks}
+        if type(x[out_key])==dict:
+            for in_key in x[out_key].keys():
+                if in_key in ['f', 't']:
+                    idx_ticks, val_ticks = create_ticks(
+                        x[out_key][in_key], n_ticks=9, n_decimals=2)
+                    axes[out_key][in_key] = {
+                        'idx': idx_ticks,
+                        'val': val_ticks}
     return axes

@@ -11,6 +11,9 @@ import numpy as np
 f_s = 44100 # [Hz]
 # f_s = 48000 # [Hz]
 
+n_fft = 4096
+hop_length = 256
+
 default = {
     'mag_a_min': 1e-13, # 1e-5, #
     'mag_top_db': 70.0, # 80.0, #
@@ -19,9 +22,6 @@ default = {
     'n_ceps_coeffs': 300,
     'idx_ceps_low_cut': 2,
 }
-
-n_fft = 4096
-hop_length = 256
 
 params = {}
 
