@@ -10,15 +10,20 @@ import matplotlib
 # config:
 
 figsize = (15, 2)
+
 cmap_spec = 'magma'
 cmap_phase = plt.cm.rainbow
+
 color_dict  = {
     'red':  ((0, 0, 0), (1, 0, 0)),
     'green': ((0, 0, 0), (1, 0, 0)),
     'blue':  ((0, 0, 0), (1, 0, 0)),
     'alpha':  ((0, 1, 1), (1, 0, 0))
 }
+
 cmap_magnitude = matplotlib.colors.LinearSegmentedColormap('Mask', color_dict)
+
+idx_cut_cc = 2
 
 
 # functions:
@@ -85,11 +90,12 @@ def display_all(
     # display stft cepstrum:
     if display_cepstrum:
         plt.figure(figsize=figsize)
-        plt.imshow(x['stft']['c'], origin='lower', aspect='auto', cmap=cmap_spec)
+        plt.imshow(x['stft']['c'][idx_cut_cc:], origin='lower', aspect='auto', cmap=cmap_spec)
         plt.xticks(axes['stft']['t']['idx'], axes['stft']['t']['val'])
         plt.xlabel('t [sec]')
         plt.ylabel('coefficients')
         plt.title('Short-Time Fourier Cepstral Coefficients')
+        plt.ylim([0, None]) ###
         plt.show()
 
     # display mel:
@@ -105,12 +111,12 @@ def display_all(
     # display mel cepstrum (mfcc):
     if display_cepstrum:
         plt.figure(figsize=figsize)
-        plt.imshow(x['mel']['c'], origin='lower', aspect='auto', cmap=cmap_spec)
+        plt.imshow(x['mel']['c'][idx_cut_cc:], origin='lower', aspect='auto', cmap=cmap_spec)
         plt.xticks(axes['mel']['t']['idx'], axes['mel']['t']['val'])
         plt.xlabel('t [sec]')
         plt.ylabel('coefficients')
         plt.title('Mel-Frequency Cepstral Coefficients')
-        plt.ylim([0, 100]) ###
+        plt.ylim([0, 60]) ###
         plt.show()
 
     # display cqt:
@@ -138,12 +144,12 @@ def display_all(
     # display mel cepstrum (cqcc):
     if display_cepstrum:
         plt.figure(figsize=figsize)
-        plt.imshow(x['cqt']['c'], origin='lower', aspect='auto', cmap=cmap_spec)
+        plt.imshow(x['cqt']['c'][idx_cut_cc:], origin='lower', aspect='auto', cmap=cmap_spec)
         plt.xticks(axes['cqt']['t']['idx'], axes['cqt']['t']['val'])
         plt.xlabel('t [sec]')
         plt.ylabel('coefficients')
         plt.title('Constant-Q Cepstral Coefficients')
-        plt.ylim([0, 50]) ###
+        plt.ylim([0, 60]) ###
         plt.show()
         
     # display features:

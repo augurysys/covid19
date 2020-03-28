@@ -17,10 +17,10 @@ hop_length = 256
 default = {
     'mag_a_min': 1e-13, # 1e-5, #
     'mag_top_db': 70.0, # 80.0, #
-    'f_low_cut': 150, # 0, # 50, # 
-    'f_high_cut': 5000, # np.inf, # 
+    'f_low_cut': 0, # 100, # 50, # 150 # 
+    'f_high_cut': np.inf, # 5000, # 
     'n_ceps_coeffs': 300,
-    'idx_ceps_low_cut': 2,
+    'idx_ceps_low_cut': 0,
 }
 
 params = {}
@@ -41,11 +41,20 @@ params['mel'] = {
     'n_mels': 256, 
 }
 
+# params['cqt'] = {
+#     'f_s': f_s, 
+#     'n_bins': int(n_fft/2),
+#     'hop_length': hop_length,
+#     'fmin': librosa.core.note_to_hz('E0')
+#     'bins_per_octave': 256,
+#     'filter_scale': 1/8,
+# }
+
 params['cqt'] = {
     'f_s': f_s, 
-    'n_bins': int(n_fft/2),
+    'n_bins': int((84+12)*4),
     'hop_length': hop_length,
-    'fmin': librosa.core.note_to_hz('E0'), # = 32.70 [Hz]
-    'bins_per_octave': 256,
-    'filter_scale': 1/8,
+    'fmin': librosa.core.note_to_hz('C1'), # = 32.70 [Hz]
+    'bins_per_octave': int(12*4),
+    'filter_scale': 1,
 }

@@ -63,7 +63,9 @@ def wave_to_mel(
         n_fft=n_fft, hop_length=hop_length, 
         n_mels=n_mels, sr=f_s, fmin=fmin, fmax=fmax, 
         power=1)
-    mel_spec_db = librosa.amplitude_to_db(mel_spec, ref=np.max)
+    
+    mel_spec_db = scale_magnitude(mel_spec)
+#     mel_spec_db = librosa.amplitude_to_db(mel_spec, ref=np.max)
     
     # create cepstrum (mfcc):
     mel_ceps = cepstrum(mel_spec_db)
