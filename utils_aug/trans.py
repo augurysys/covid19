@@ -191,3 +191,25 @@ def cepstrum(
     ceps = ceps[idx_low_cut:idx_low_cut+n_coeffs]
     
     return ceps
+
+
+def wave_to_fft(wave,f_s):
+    
+    from scipy.fftpack import fft, ifft
+    import numpy as np
+    x=wave
+    L=len(x)
+    T=L/f_s
+    sx=1/L*fft(x)
+    
+    s_fft=np.abs(sx[:int(L/2)])
+    f_fft=np.linspace(0,f_s/2,f_s/2*T)
+    t_fft=T
+    
+    # organize:
+    fft = {
+        's': s_fft,
+        'f': f_fft, 
+    }
+    
+    return fft

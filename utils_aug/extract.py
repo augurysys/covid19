@@ -58,3 +58,7 @@ params['cqt'] = {
     'bins_per_octave': int(12*4),
     'filter_scale': 1,
 }
+
+params['fft'] = {
+    'f_s': f_s, 
+}
