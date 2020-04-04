@@ -29,7 +29,8 @@ def signal_features(
     features = {'rms': librosa.feature.rms(wave, hop_length=hop_length, frame_length=frame_length),
                'rms_total': librosa.feature.rms(wave),
                'spectral_flatness' : librosa.feature.spectral_flatness(wave, hop_length=hop_length, n_fft=n_fft),
-               'std' : np.std(wave, axis=0)}
+               'std' : np.std(wave, axis=0),
+               'zero_cross':librosa.feature.zero_crossing_rate(wave, hop_length=hop_length, frame_length=frame_length)}
 
     return features
     
