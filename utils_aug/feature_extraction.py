@@ -59,16 +59,16 @@ def signal_features(
         features_3[i] = np.expand_dims(features_3[i], axis=0)
 
     # concatenate:
-    features_1 = np.concatenate(features_1)
-    features_2 = np.concatenate(features_2)
-    features_3 = np.concatenate(features_3)
-    features = np.concatenate([features_1, features_2, features_3])
+#     features_1 = np.concatenate(features_1)
+#     features_2 = np.concatenate(features_2)
+#     features_3 = np.concatenate(features_3)
+#     features = np.concatenate([features_1, features_2, features_3])
 
-    # normalize: (OPTIONAL, not sure if releval)
-    if normalize:
-        for i in range(len(features)):
-            features[i] = (features[i] - np.mean(features[i]))/np.std(features[i])
+#     # normalize: (OPTIONAL, not sure if releval)
+#     if normalize:
+#         for i in range(len(features)):
+#             features[i] = (features[i] - np.mean(features[i]))/np.std(features[i])
 
-    return features
+    return features_1, features_2, features_3
 
 
