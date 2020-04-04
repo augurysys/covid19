@@ -191,5 +191,3 @@ def cepstrum(
     ceps = ceps[idx_low_cut:idx_low_cut+n_coeffs]
     
     return ceps
-
-

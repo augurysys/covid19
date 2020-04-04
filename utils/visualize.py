@@ -98,7 +98,7 @@ def display_all(
         plt.ylim([0, None]) ###
         plt.show()
 
-    # display mel:
+    display mel:
     plt.figure(figsize=figsize)
     plt.imshow(x['mel']['s'], origin='lower', aspect='auto', cmap=cmap_spec)
     plt.xticks(axes['mel']['t']['idx'], axes['mel']['t']['val'])
@@ -108,7 +108,7 @@ def display_all(
     plt.title('Mel-Frequency Transform')
     plt.show()
     
-    # display mel cepstrum (mfcc):
+    display mel cepstrum (mfcc):
     if display_cepstrum:
         plt.figure(figsize=figsize)
         plt.imshow(x['mel']['c'][idx_cut_cc:], origin='lower', aspect='auto', cmap=cmap_spec)
@@ -119,7 +119,7 @@ def display_all(
         plt.ylim([0, 60]) ###
         plt.show()
 
-    # display cqt:
+    display cqt:
     plt.figure(figsize=figsize)
     plt.imshow(x['cqt']['s'], origin='lower', aspect='auto', cmap=cmap_spec)
     plt.xticks(axes['cqt']['t']['idx'], axes['cqt']['t']['val'])
@@ -129,7 +129,7 @@ def display_all(
     plt.title('Constant-Q Transform')
     plt.show()
     
-    # display cqt (with phase):
+    display cqt (with phase):
     if display_rainbowgrams:
         plt.figure(figsize=figsize)
         plt.imshow(x['cqt']['f_phase'], origin='lower', aspect='auto', cmap=cmap_phase)
@@ -141,7 +141,7 @@ def display_all(
         plt.title('Constant-Q Transform Rainbowgram')
         plt.show()
         
-    # display mel cepstrum (cqcc):
+    display mel cepstrum (cqcc):
     if display_cepstrum:
         plt.figure(figsize=figsize)
         plt.imshow(x['cqt']['c'][idx_cut_cc:], origin='lower', aspect='auto', cmap=cmap_spec)
@@ -152,7 +152,7 @@ def display_all(
         plt.ylim([0, 60]) ###
         plt.show()
         
-    # display features:
+    display features:
     plt.figure(figsize=figsize)
     idx = ~np.isnan(x['features'])
     val = np.std(x['features'][idx])
