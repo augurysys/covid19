@@ -1,6 +1,6 @@
 # imports:
 
-import utils.extract
+import utils_aug.extract
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -54,7 +54,7 @@ def display_all(
     axes = create_ticks_all(x)
 
     # sound wave:
-    display(Audio(x['wave']['s'], rate=utils.extract.f_s))
+    display(Audio(x['wave']['s'], rate=utils_aug.extract.f_s))
 
     # display wave:
     plt.figure(figsize=figsize)

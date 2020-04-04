@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import scipy
 
-from utils.extract import default
+from utils_aug.extract import default
 
 
 # wavelet functions:
