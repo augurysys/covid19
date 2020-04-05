@@ -30,7 +30,11 @@ def signal_features(
                'rms_total': librosa.feature.rms(wave),
                'spectral_flatness' : librosa.feature.spectral_flatness(wave, hop_length=hop_length, n_fft=n_fft),
                'std' : np.std(wave, axis=0),
-               'zero_cross':librosa.feature.zero_crossing_rate(wave, hop_length=hop_length, frame_length=frame_length)}
+               'zero_cross':librosa.feature.zero_crossing_rate(wave, hop_length=hop_length, frame_length=frame_length),
+               'skew': scipy.stats.skew(wave_windows, axis=0),
+               'kurtosis': scipy.stats.kurtosis(wave_windows, axis=0),
+               'entropy': np.stack([scipy.stats.entropy(np.abs(w+1e-10)) for w in wave_windows.T])}
+    
 
     return features
     
